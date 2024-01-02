@@ -16,17 +16,47 @@ def print_help():
     print("\th\tharmonic mean")
     print("\tsd\tstandard deviation")
 
+def get_data():
+    return {"n": int(sys.argv[1]), "a": float(sys.argv[2]),
+            "h": float(sys.argv[3]), "sd": float(sys.argv[4]),
+            "ms": 0.0}
+
+def think(data, value):
+    data['a'] = (data['a'] * data['n'] + value) / (data['n'] + 1)
+    deviation = (value - data['a']) ** 2
+    data['sd'] = ((((data['sd'] ** 2) * data['n']) + deviation) / (data['n'] + 1)) ** 0.5
+    data['h'] = ()
+    data['n'] += 1
+    return data
+
+def print_data(data):
+    print(f"\tNumber of values:\t{data['n']:d}")
+    print(f"\tStandard deviation:\t{data['sd']:.2f}")
+    print(f"\tArithmetic mean:\t{data['a']:.2f}")
+    print(f"\tRoot mean square:\t{data['ms']:.2f}")
+    print(f"\tHarmonic mean:\t\t{data['h']:.2f}")
+    print()
+
+def shell():
+    comand = ""
+    data = get_data()
+    comand = input("Enter next value: ")
+    while comand != "END":
+        data = think(data, float(comand))
+        print_data(data)
+        comand = input("Enter next value: ")
+
 def main():
     argc = len(sys.argv)
-    if argc > 5:
-        raise Exception("ERROR: Incorrect number of arguments")
-    elif argc > 2 and argc < 5:
-        raise Exception("ERROR: Incorrect number of arguments")
-    elif argc == 2:
+    if argc == 2:
         if sys.argv[1] == "-h":
             print_help()
         else:
             raise Exception("ERROR: Argument not allowed")
+    elif argc != 5:
+        raise Exception("ERROR: Incorrect number of arguments")
+    else:
+        shell()
 
 if __name__ == "__main__":
     try:
