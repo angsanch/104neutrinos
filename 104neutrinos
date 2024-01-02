@@ -8,8 +8,25 @@
 
 import sys
 
+def print_help():
+    print("USAGE\n\t./104neutrinos n a h sd")
+    print("DESCRIPTION\n\tn\tnumber of values")
+    print("\ta\tarithmetic mean")
+    print("\th\tharmonic mean")
+    print("\th\tharmonic mean")
+    print("\tsd\tstandard deviation")
+
 def main():
-    pass
+    argc = len(sys.argv)
+    if argc > 5:
+        raise Exception("ERROR: Incorrect number of arguments")
+    elif argc > 2 and argc < 5:
+        raise Exception("ERROR: Incorrect number of arguments")
+    elif argc == 2:
+        if sys.argv[1] == "-h":
+            print_help()
+        else:
+            raise Exception("ERROR: Argument not allowed")
 
 if __name__ == "__main__":
     try:
