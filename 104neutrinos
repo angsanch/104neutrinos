@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+##
+## EPITECH PROJECT, 2023
+## 104neutrinos
+## File description:
+## neurinos maths
+##
+
+import sys
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print(e, file=sys.stderr)
+        exit(84)
